@@ -435,9 +435,9 @@ class Flow {
       });
     }
 	
-	if (prompt != null) {
-		v.add("prompt": prompt);
-	}
+    if (prompt != null) {
+      v.addAll({"prompt": prompt});
+    }
 	
     return v;
   }
