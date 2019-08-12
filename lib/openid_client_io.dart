@@ -20,15 +20,17 @@ class Authenticator {
         urlLancher = urlLancher ?? _runBrowser;
 
   Authenticator(Client client,
-      {this.port = 3000,
-      this.urlLancher = _runBrowser,
-      Iterable<String> scopes = const [],
-      Uri? redirectUri})
+      {this.port: 3000,
+      this.urlLancher: _runBrowser,
+      Iterable<String> scopes: const [],
+      Uri? redirectUri,
+      String? prompt})
       : flow = redirectUri == null
             ? Flow.authorizationCodeWithPKCE(client)
             : Flow.authorizationCode(client)
           ..scopes.addAll(scopes)
-          ..redirectUri = redirectUri ?? Uri.parse('http://localhost:$port/');
+          ..redirectUri = redirectUri ?? Uri.parse("http://localhost:$port/cb")
+          ..prompt = prompt ?? "login+consent";
 
   Future<Credential> authorize() async {
     var state = flow.authenticationUri.queryParameters['state']!;

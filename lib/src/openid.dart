@@ -348,6 +348,8 @@ class Flow {
   final List<String> scopes = [];
 
   final String state;
+  
+  String prompt;
 
   final Map<String, String> _additionalParameters;
 
@@ -432,6 +434,11 @@ class Flow {
         'code_challenge': _proofKeyForCodeExchange['code_challenge']
       });
     }
+	
+	if (prompt != null) {
+		v.add("prompt": prompt);
+	}
+	
     return v;
   }
 
