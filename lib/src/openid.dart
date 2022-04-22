@@ -349,7 +349,7 @@ class Flow {
 
   final String state;
   
-  String prompt;
+  final String? prompt;
 
   final Map<String, String> _additionalParameters;
 
